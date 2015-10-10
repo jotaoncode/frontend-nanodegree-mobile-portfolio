@@ -1,0 +1,11 @@
+.sprite-portfolio {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../images/nano4portfolio.png);}
+.devices-100_small {width:100px; height:61px; background-position: -278px -2px}
+.pic_2048-100_small {width:100px; height:50px; background-position: -380px -2px}
+.pic_performance-100_small {width:100px; height:62px; background-position: -176px -2px}
+.pizzeria-100_small {width:100px; height:75px; background-position: -2px -2px}
+.profilepic {width:70px; height:70px; background-position: -104px -2px}
+
+.sprite-port { border: 0; max-width: 100%; }
+
+li .sprite-portfolio { float:left; margin-right: 1em; }
+header .sprite-portfolio { border-radius: 40px; float: left; }

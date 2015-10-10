@@ -1,0 +1,16 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:0296ccc26f5a03b53df034d338fbb402:ec96fcc56c753522b0a712915879b521:09c52f40cd42277eaca85534ff4fe6d8$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(mobile.png);}
+
+.mobilewebdev-600_medium {width:600px; height:305px; background-position: -2px -2px}
+.profilepic {width:70px; height:70px; background-position: -604px -2px}

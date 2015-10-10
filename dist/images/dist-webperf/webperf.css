@@ -1,0 +1,16 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:eece32427a191aedb6ce7277c67ae4f4:372065db9ed9432c64ae7d0e1f390854:6bda1681ece4066cd76759138a5c9331$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(webperf.png);}
+
+.cam_be_like {width:482px; height:492px; background-position: -2px -2px}
+.profilepic {width:70px; height:70px; background-position: -486px -2px}

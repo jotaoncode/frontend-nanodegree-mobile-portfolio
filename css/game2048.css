@@ -1,0 +1,7 @@
+.sprite-2048 {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../images/2048.png);}
+
+.pic-2048 {width:558px; height:822px; background-position: -2px -2px}
+.profilepic {width:70px; height:70px; background-position: -2px -826px}
+
+li .sprite-2048 { float:left; margin-right: 1em; }
+header .sprite-2048 { border-radius: 40px; float: left; }

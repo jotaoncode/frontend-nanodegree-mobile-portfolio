@@ -1,0 +1,19 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:00c91d23648a30d84e1508734af0c481:ccdd6c51eb7c6aa813343392d7978adb:e30ef0143bfb0a694495a9bbcc7eb294$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(nano4portfolio.png);}
+
+.devices-100_small {width:100px; height:61px; background-position: -278px -2px}
+.pic_2048-100_small {width:100px; height:50px; background-position: -380px -2px}
+.pic_performance-100_small {width:100px; height:62px; background-position: -176px -2px}
+.pizzeria-100_small {width:100px; height:75px; background-position: -2px -2px}
+.profilepic {width:70px; height:70px; background-position: -104px -2px}
