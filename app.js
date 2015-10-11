@@ -20,7 +20,10 @@ app.use(express.static(resources));
 /**
  * Routes
  */
-
+app.get('/', function (req, res) {
+  var pathPage = __dirname + "/dist";
+  routing(req, res, pathPage);
+});
 app.get('/before/home', function (req, res) {
   var pathPage = __dirname + "/before/index.html";
   routing(req, res, pathPage);
