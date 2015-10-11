@@ -1,73 +1,188 @@
 ## Website Performance Optimization portfolio project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+This project is for website performance optimization. It has 5 pages to be optimized.
 
-To get started, check out the repository, inspect the code,
+In order to test and measure I have built a nodejs server with express and deployed to heroku. This way I can analize the impact of everything I have done in localhost, but for real.
 
-### Getting started
+In this address: https://nano-degree-performance.herokuapp.com/dist/ you will find everything optimized.
 
-####Part 1: Optimize PageSpeed Insights score for index.html
+In this address: https://nano-degree-performance.herokuapp.com/before/ you will find everything NOT optimized.
 
-Some useful tips to help you get started:
+You will find the results in heroku as long as there is a dyno for it XD, that means after being approved probably it will be not deployed, but actually you can see the results in here.
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+For this pages: index.html, project-mobile.html, project-2048.html, project-webperf.html, I have done the following:
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+1- Moved scripts to bottom.
+2- Made async scripts when I could.
+3- Compressed with uglify / YUI-CSS for javascript and styles.
+4- Compressed images with grunt-responsive-images.
+5- I made images for the size they where consumed, and also I have done an sprite for each site, in order to avoid travelling around many times.
+6- Every site has his own js and css file, with only what is needed.
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
+For Pizza.html page I did the following.
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
-  ```
+This page was creating a lot of things messing around with DOM, so I decided to add Handlebars and jQuery. Here are the things I changed.
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+1- Moved scripts to bottom.
+2- Made async scripts when I could.
+3- Compressed with uglify / YUI-CSS for javascript and styles.
+4- Compressed images with grunt-responsive-images.
+5- I made images for the size they where consumed, and also I have done an sprite for each site, in order to avoid travelling around many times.
+6- Every site has his own js and css file, with only what is needed.
+7- By using Handlebars I added a template in the page for menu. This would helpme to see more clear problem by having a template that will work with my source code to make the html I need at once instead of adding every child.
+8- Avoided layout trashing, as in this case some properties where asked and then they change the style of things.
+9- They where creating 200 pizzas in the background where you are seing only 35 all the time.
+10- I removed the background to another container with position absolute, and animated inside them by using transformations, instead of changing left of elements.
+11- In many cases calculations / queries to DOM / and repeating code where removed, so I gained 100 lines over the original js file.
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+The results with pagespeed are:
 
-####Part 2: Optimize Frames per Second in pizza.html
+$ grunt pagespeed                                                                                    juan@juan
+Running "pagespeed:prod" (pagespeed) task
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+--------------------------------------------------------
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+URL:       nano-degree-performance.herokuapp.com/dist
+Strategy:  desktop
+Score:     96
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+CSS size                                   | 6.47 kB
+HTML size                                  | 2.72 kB
+Image size                                 | 69.7 kB
+JavaScript size                            | 27.22 kB
+CSS resources                              | 1
+Hosts                                      | 2
+JS resources                               | 2
+Resources                                  | 6
+Static resources                           | 1
+Total size                                 | 700 B
 
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
+Enable GZIP compression                    | 0.6
+Leverage browser caching                   | 0.5
+Minimize render blocking resources         | 2
 
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+--------------------------------------------------------
 
-### Sample Portfolios
 
-Feeling uninspired by the portfolio? Here's a list of cool portfolios I found after a few minutes of Googling.
+Running "pagespeed:paths" (pagespeed) task
 
-* <a href="http://www.reddit.com/r/webdev/comments/280qkr/would_anybody_like_to_post_their_portfolio_site/">A great discussion about portfolios on reddit</a>
-* <a href="http://ianlunn.co.uk/">http://ianlunn.co.uk/</a>
-* <a href="http://www.adhamdannaway.com/portfolio">http://www.adhamdannaway.com/portfolio</a>
-* <a href="http://www.timboelaars.nl/">http://www.timboelaars.nl/</a>
-* <a href="http://futoryan.prosite.com/">http://futoryan.prosite.com/</a>
-* <a href="http://playonpixels.prosite.com/21591/projects">http://playonpixels.prosite.com/21591/projects</a>
-* <a href="http://colintrenter.prosite.com/">http://colintrenter.prosite.com/</a>
-* <a href="http://calebmorris.prosite.com/">http://calebmorris.prosite.com/</a>
-* <a href="http://www.cullywright.com/">http://www.cullywright.com/</a>
-* <a href="http://yourjustlucky.com/">http://yourjustlucky.com/</a>
-* <a href="http://nicoledominguez.com/portfolio/">http://nicoledominguez.com/portfolio/</a>
-* <a href="http://www.roxannecook.com/">http://www.roxannecook.com/</a>
-* <a href="http://www.84colors.com/portfolio.html">http://www.84colors.com/portfolio.html</a>
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist
+Strategy:  desktop
+Score:     96
+
+CSS size                                   | 6.47 kB
+HTML size                                  | 2.72 kB
+Image size                                 | 69.7 kB
+JavaScript size                            | 27.22 kB
+CSS resources                              | 1
+Hosts                                      | 2
+JS resources                               | 2
+Resources                                  | 6
+Static resources                           | 1
+Total size                                 | 708 B
+
+Enable GZIP compression                    | 0.6
+Leverage browser caching                   | 0.5
+Minimize render blocking resources         | 2
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/project-webperf.html
+Strategy:  desktop
+Score:     96
+
+CSS size                                   | 6.18 kB
+HTML size                                  | 2.74 kB
+Image size                                 | 370.6 kB
+JavaScript size                            | 27.22 kB
+CSS resources                              | 1
+Hosts                                      | 2
+JS resources                               | 2
+Resources                                  | 6
+Static resources                           | 1
+Total size                                 | 736 B
+
+Enable GZIP compression                    | 0.56
+Leverage browser caching                   | 0.5
+Minimize render blocking resources         | 2
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/project-mobile.html
+Strategy:  desktop
+Score:     96
+
+CSS size                                   | 6.19 kB
+HTML size                                  | 2.56 kB
+Image size                                 | 219.64 kB
+JavaScript size                            | 27.22 kB
+CSS resources                              | 1
+Hosts                                      | 2
+JS resources                               | 2
+Resources                                  | 6
+Static resources                           | 1
+Total size                                 | 732 B
+
+Enable GZIP compression                    | 0.55
+Leverage browser caching                   | 0.5
+Minimize render blocking resources         | 2
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/project-2048.html
+Strategy:  desktop
+Score:     96
+
+CSS size                                   | 6.17 kB
+HTML size                                  | 2.58 kB
+Image size                                 | 58.76 kB
+JavaScript size                            | 27.29 kB
+CSS resources                              | 1
+Hosts                                      | 2
+JS resources                               | 2
+Resources                                  | 6
+Static resources                           | 1
+Total size                                 | 729 B
+
+Enable GZIP compression                    | 0.55
+Leverage browser caching                   | 0.5
+Minimize render blocking resources         | 2
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/pizza.html
+Strategy:  desktop
+Score:     63
+
+CSS size                                   | 10.72 kB
+HTML size                                  | 4.99 kB
+Image size                                 | 475.54 kB
+JavaScript size                            | 172.29 kB
+CSS resources                              | 1
+Hosts                                      | 1
+JS resources                               | 1
+Resources                                  | 4
+Total size                                 | 328 B
+
+Enable GZIP compression                    | 12.68
+Minify HTML                                | 0.11
+Minimize render blocking resources         | 2
+Optimize images                            | 45.92
+
+--------------------------------------------------------
+
+The last one has only a 63 score because the size of javascript and images. Size in javascript is bigger beacouse I used a bit jquery and Handlebars libraries.
