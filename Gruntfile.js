@@ -8,7 +8,7 @@ module.exports = function(grunt) {
           sizes: [{
             width: 750
           }, {
-            width: 74
+            width: 165
           }]
         },
         files: [{
@@ -22,11 +22,11 @@ module.exports = function(grunt) {
     pagespeed: {
       options: {
         nokey: true,
-        url: "https://developers.google.com"
+        url: "https://nano-degree-performance.herokuapp.com/dist/",
       },
       prod: {
         options: {
-          url: "https://developers.google.com/speed/docs/insights/v1/getting_started",
+          url: "https://nano-degree-performance.herokuapp.com/dist/",
           locale: "en_GB",
           strategy: "desktop",
           threshold: 80
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       },
       paths: {
         options: {
-          paths: ["/speed/docs/insights/v1/getting_started", "/speed/docs/about"],
+          paths: ["/", "/project-2048.html", "/project-webperf.html", "/project-mobile.html", "/pizza.html"],
           locale: "en_GB",
           strategy: "desktop",
           threshold: 80
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('minify:js:pizza', function () {
-    minifyJs(['./js/pizza.js'], 'pizza.js');
+    minifyJs(['./js/pizza.js', './vendors/jquery.min.js', './vendors/handlebars.min.js'], 'pizza.js');
   });
 
   require('load-grunt-tasks')(grunt);
