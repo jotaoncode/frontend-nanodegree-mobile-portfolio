@@ -1,7 +1,0 @@
-.sprite-mobile {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(../images/mobile.png);}
-
-.mobilewebdev-600_medium {width:600px; height:305px; background-position: -2px -2px}
-.profilepic {width:70px; height:70px; background-position: -604px -2px}
-
-li .sprite-mobile { float:left; margin-right: 1em; }
-header .sprite-mobile { border-radius: 40px; float: left; }

@@ -64,25 +64,8 @@ module.exports = function(grunt) {
             './css/common/print.css',
             './css/common/smartphones-media.css'];
   }
-  grunt.registerTask('minify:css:portfolio', function () {
-    var porfolioCSS = getCommonCSS();
-    porfolioCSS.push('./css/portfolio.css');
-    compressCss(porfolioCSS, 'portfolio.css');
-  });
-  grunt.registerTask('minify:css:webperf', function () {
-    var webperfCSS = getCommonCSS();
-    webperfCSS.push('./css/webperf.css');
-    compressCss(webperfCSS, 'webperf.css');
-  });
-  grunt.registerTask('minify:css:mobile', function () {
-    var mobileCSS = getCommonCSS();
-    mobileCSS.push('./css/mobile.css');
-    compressCss(mobileCSS, 'mobile.css');
-  });
-  grunt.registerTask('minify:css:game2048', function () {
-    var game2048CSS = getCommonCSS();
-      game2048CSS.push('./css/game2048.css');
-    compressCss(game2048CSS, 'game2048.css');
+  grunt.registerTask('minify:css:common', function () {
+    compressCss(getCommonCSS(), 'styles.css');
   });
   grunt.registerTask('minify:css:pizza', function () {
     var pizzaCSS = [];
@@ -117,10 +100,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', [
-    'minify:css:portfolio',
-    'minify:css:webperf',
-    'minify:css:mobile',
-    'minify:css:game2048',
+    'minify:css:common',
     'minify:css:pizza',
     'minify:js:pages',
     'minify:js:pizza',
