@@ -111,7 +111,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('minify:js:pizza', function () {
-    minifyJs(['./js/pizza.js', './vendors/jquery.min.js', './vendors/handlebars.min.js'], 'pizza.js');
+    minifyJs(['./vendors/jquery.min.js', './vendors/handlebars.min.js', './js/pizza.js'], 'pizza.js');
   });
 
   require('load-grunt-tasks')(grunt);
