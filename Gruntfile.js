@@ -93,7 +93,7 @@ module.exports = function(grunt) {
   function minifyJs(fileIn, fileOut) {
     console.log('compressing pizza.js to:', fileOut);
     new Compressor.minify({
-      type: 'no-compress',
+      type: 'uglifyjs',
       fileIn: fileIn,
       tempPath: './.tmp/',
       fileOut: './dist/js/' + fileOut,

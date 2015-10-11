@@ -366,13 +366,19 @@ var resizePizzas = function(ev) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+/**
+ * Creates all the pizzas you can choose
+ */
 function generateMenu() {
-  var pizzasElements = [];
-  var ingredients;
-  var pizzasDiv = $('#pizzas-template').html();
+  var pizzasElements = [],
+    ingredients,
+    template,
+    html,
+    timeToGenerate,
+    pizzasDiv = $('#pizzas-template').html();
 
   // This for-loop actually creates and appends all of the pizzas when the page loads
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 98; i++) {
     ingredients =  makeRandomPizzaIngredients();
     pizzasElements.push({
       id: 'pizza' + i,
@@ -380,24 +386,39 @@ function generateMenu() {
       ingredients: ingredients
     });
   }
-  var template = Handlebars.compile(pizzasDiv);
-  var html = template({
+  pizzasElements.unshift({
+      id: 'pizza' + 99,
+      name: "The Cameron Special",
+      ingredients: ["Chicken", "Hot Sauce", "White Crust"]
+  });
+  pizzasElements.unshift({
+      id: 'pizza' + 100,
+      name: "The Udacity Special",
+      ingredients: ["Turkey", "Tofu", "Cauliflower", "Sun Dried Tomatoes", "Velveeta Cheese", "Red Sauce", "Whole Wheat Crust"]
+  });
+  template = Handlebars.compile(pizzasDiv);
+  html = template({
       pizzas: pizzasElements
   });
   $('#randomPizzas').html(html);
   // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
   window.performance.mark("mark_end_generating");
   window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
-  var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
+  timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
   console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
 }
 /**
- * TODO: Refactor this, this could be done with handlebars and sass
- * sass provides a nice way to work with mixins and calculations
- * and handlebars would create the markup
+ * Moving pizzas is the container of pizzas in background
  */
 var movingPizzas;
-var items;
+/**
+ * Pizzas is an array of pizzas imgs, the parent is movingPizzas
+ */
+var pizzas;
+/**
+ * This will create the background of pizzas
+ * that moves when you scroll
+ */
 function generateBackground() {
   var cols = 8;
   var s = 256;
@@ -409,20 +430,17 @@ function generateBackground() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     movingPizzas.appendChild(elem);
   }
-  items = document.querySelectorAll('.mover');
+  pizzas = document.querySelectorAll('.mover');
 }
-function addSlideSizerHandler() {
+/**
+ * Adding all the page listeners
+ */
+function addPageListeners() {
+   // size sliders, that show pizzas big small or medium size
    $('#sizeSlider').change(resizePizzas);
+   // runs updatePositions on scroll
+   window.addEventListener('scroll', updatePositions);
 }
-var scrollTop;
-$(function () {
-  movingPizzas = document.getElementById('movingPizzas');
-
-  addSlideSizerHandler();
-  generateMenu();
-  generateBackground();
-  updatePositions();
-});
 
 
 // Iterator for number of times the pizzas in the background have scrolled.
@@ -439,25 +457,26 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// The following code for sliding background pizzas was pulled from Ilya's demo found at:
-// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
-// Moves the sliding background pizzas based on scroll position
+/**
+ * Picks the position to be moved according to scroll top position
+ */
 function pickPhase(position, scrollTop) {
   return Math.sin(scrollTop + (position % 5)) * 100;
 }
 
+var scrollTop;
+/**
+ * Updates positions
+ */
 function updatePositions() {
   frame++;
   scrollTop = document.body.scrollTop / 1250;
   window.performance.mark("mark_start_frame");
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < pizzas.length; i++) {
     var phase = pickPhase(i, scrollTop);
-    items[i].style.transform = "translate(" + (parseInt(items[i].basicLeft) + phase) + ", 0)";
+    pizzas[i].style.transform = "translate(" + (pizzas[i].basicLeft + phase) + "px, 0)";
   }
 
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
@@ -466,5 +485,13 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+
+
+$(function () {
+  movingPizzas = document.getElementById('movingPizzas');
+  addPageListeners();
+  generateMenu();
+  generateBackground();
+  updatePositions();
+});
+
