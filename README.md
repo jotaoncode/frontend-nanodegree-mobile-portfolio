@@ -20,9 +20,7 @@ For this pages: index.html, project-mobile.html, project-2048.html, project-webp
 
 4- Compressed images with grunt-responsive-images.
 
-5- I made images for the size they where consumed, and also I have done an sprite for each site, in order to avoid travelling around many times.
-
-6- Every site has his own js and css file, with only what is needed.
+5- Added those compressed scripts and styles without making any request, as inline. This makes a load time faster for images and other resources.
 
 For Pizza.html page I did the following.
 
@@ -36,23 +34,19 @@ This page was creating a lot of things messing around with DOM, so I decided to 
 
 4- Compressed images with grunt-responsive-images.
 
-5- I made images for the size they where consumed, and also I have done an sprite for each site, in order to avoid travelling around many times.
+8- By using Handlebars I added a template in the page for menu. This would helpme to see more clear problem by having a template that will work with my source code to make the html I need at once instead of adding every child.
 
-6- Every site has his own js and css file, with only what is needed.
+9- Avoided layout trashing, as in this case some properties where asked and then they change the style of things.
 
-7- By using Handlebars I added a template in the page for menu. This would helpme to see more clear problem by having a template that will work with my source code to make the html I need at once instead of adding every child.
+10- They where creating 200 pizzas in the background where you are seing only 35 all the time.
 
-8- Avoided layout trashing, as in this case some properties where asked and then they change the style of things.
+11- I removed the background to another container with position absolute, and animated inside them by using transformations, instead of changing left of elements.
 
-9- They where creating 200 pizzas in the background where you are seing only 35 all the time.
-
-10- I removed the background to another container with position absolute, and animated inside them by using transformations, instead of changing left of elements.
-
-11- In many cases calculations / queries to DOM / and repeating code where removed, so I gained 100 lines over the original js file.
+12- In many cases calculations / queries to DOM / and repeating code where removed, so I gained 100 lines over the original js file.
 
 The results with pagespeed are:
 
-$ grunt pagespeed                                                                                    juan@juan
+$ grunt pagespeed              juan@juan
 
 Running "pagespeed:prod" (pagespeed) task
 
@@ -64,31 +58,30 @@ Strategy:  desktop
 
 Score:     96
 
-CSS size                                   | 6.47 kB
+HTML size                                  | 8.67 kB
 
-HTML size                                  | 2.72 kB
+Image size                                 | 53.58 kB
 
-Image size                                 | 69.7 kB
-
-JavaScript size                            | 27.22 kB
-
-CSS resources                              | 1
+JavaScript size                            | 26.62 kB
 
 Hosts                                      | 2
 
-JS resources                               | 2
+JS resources                               | 1
 
-Resources                                  | 6
+Resources                                  | 8
 
 Static resources                           | 1
 
-Total size                                 | 700 B
+Total size                                 | 971 B
 
-Enable GZIP compression                    | 0.6
+
+Enable GZIP compression                    | 0.58
 
 Leverage browser caching                   | 0.5
 
-Minimize render blocking resources         | 2
+Minify HTML                                | 0.06
+
+Optimize images                            | 2.08
 
 --------------------------------------------------------
 
@@ -103,105 +96,29 @@ Strategy:  desktop
 
 Score:     96
 
-CSS size                                   | 6.47 kB
+HTML size                                  | 8.67 kB
 
-HTML size                                  | 2.72 kB
+Image size                                 | 53.58 kB
 
-Image size                                 | 69.7 kB
-
-JavaScript size                            | 27.22 kB
-
-CSS resources                              | 1
+JavaScript size                            | 26.62 kB
 
 Hosts                                      | 2
 
-JS resources                               | 2
+JS resources                               | 1
 
-Resources                                  | 6
-
-Static resources                           | 1
-
-Total size                                 | 708 B
-
-Enable GZIP compression                    | 0.6
-
-Leverage browser caching                   | 0.5
-
-Minimize render blocking resources         | 2
-
---------------------------------------------------------
-
-
---------------------------------------------------------
-
-URL:       nano-degree-performance.herokuapp.com/dist/project-webperf.html
-
-Strategy:  desktop
-
-Score:     96
-
-CSS size                                   | 6.18 kB
-
-HTML size                                  | 2.74 kB
-
-Image size                                 | 370.6 kB
-
-JavaScript size                            | 27.22 kB
-
-CSS resources                              | 1
-
-Hosts                                      | 2
-
-JS resources                               | 2
-
-Resources                                  | 6
+Resources                                  | 8
 
 Static resources                           | 1
 
-Total size                                 | 736 B
+Total size                                 | 981 B
 
-Enable GZIP compression                    | 0.56
-
-Leverage browser caching                   | 0.5
-
-Minimize render blocking resources         | 2
-
---------------------------------------------------------
-
-
---------------------------------------------------------
-
-URL:       nano-degree-performance.herokuapp.com/dist/project-mobile.html
-
-Strategy:  desktop
-
-Score:     96
-
-CSS size                                   | 6.19 kB
-
-HTML size                                  | 2.56 kB
-
-Image size                                 | 219.64 kB
-
-JavaScript size                            | 27.22 kB
-
-CSS resources                              | 1
-
-Hosts                                      | 2
-
-JS resources                               | 2
-
-Resources                                  | 6
-
-Static resources                           | 1
-
-Total size                                 | 732 B
-
-Enable GZIP compression                    | 0.55
+Enable GZIP compression                    | 0.58
 
 Leverage browser caching                   | 0.5
 
-Minimize render blocking resources         | 2
+Minify HTML                                | 0.06
+
+Optimize images                            | 2.08
 
 --------------------------------------------------------
 
@@ -214,31 +131,60 @@ Strategy:  desktop
 
 Score:     96
 
-CSS size                                   | 6.17 kB
+HTML size                                  | 8.47 kB
 
-HTML size                                  | 2.58 kB
+Image size                                 | 71.25 kB
 
-Image size                                 | 58.76 kB
-
-JavaScript size                            | 27.29 kB
-
-CSS resources                              | 1
+JavaScript size                            | 26.7 kB
 
 Hosts                                      | 2
 
-JS resources                               | 2
+JS resources                               | 1
 
-Resources                                  | 6
+Resources                                  | 5
 
 Static resources                           | 1
 
-Total size                                 | 729 B
+Total size                                 | 675 B
+
+Enable GZIP compression                    | 0.54
+
+Leverage browser caching                   | 0.5
+
+Optimize images                            | 2.38
+
+--------------------------------------------------------
+
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/project-mobile.html
+
+Strategy:  desktop
+
+Score:     97
+
+HTML size                                  | 8.52 kB
+
+Image size                                 | 137.81 kB
+
+JavaScript size                            | 26.62 kB
+
+Hosts                                      | 2
+
+JS resources                               | 1
+
+Resources                                  | 5
+
+Static resources                           | 1
+
+Total size                                 | 701 B
 
 Enable GZIP compression                    | 0.55
 
 Leverage browser caching                   | 0.5
 
-Minimize render blocking resources         | 2
+Optimize images                            | 0.71
 
 --------------------------------------------------------
 
@@ -266,7 +212,6 @@ Hosts                                      | 1
 JS resources                               | 1
 
 Resources                                  | 4
-
 Total size                                 | 328 B
 
 Enable GZIP compression                    | 12.68
@@ -279,4 +224,63 @@ Optimize images                            | 45.92
 
 --------------------------------------------------------
 
-The last one has only a 63 score because the size of javascript and images. Size in javascript is bigger beacouse I used a bit jquery and Handlebars libraries.
+
+--------------------------------------------------------
+
+URL:       nano-degree-performance.herokuapp.com/dist/project-webperf.html
+
+Strategy:  desktop
+
+Score:     96
+
+HTML size                                  | 8.63 kB
+
+Image size                                 | 273.7 kB
+
+JavaScript size                            | 26.62 kB
+
+Hosts                                      | 2
+
+JS resources                               | 1
+
+Resources                                  | 5
+
+Static resources                           | 1
+
+Total size                                 | 689 B
+
+Enable GZIP compression                    | 0.55
+
+Leverage browser caching                   | 0.5
+
+Optimize images                            | 2.09
+
+--------------------------------------------------------
+
+## In order to run the application:
+
+You can check 2 ways to see performance changes.
+
+1- The first one is by comparing this two sites, which are the code in dist/ folder
+
+In this address: https://nano-degree-performance.herokuapp.com/dist/ you will find everything optimized.
+
+In this address: https://nano-degree-performance.herokuapp.com/before/ you will find everything NOT optimized.
+
+Also you will be able to see the pagespeed score by running 
+
+$ grunt pagespeed
+
+2- The second one is to run the following command
+
+$ node app
+
+And then navigate to the different sources checking the time lines exposed locally for the before and dist pages by accesing to http://localhost:3000 .
+
+You can always expose this pages in apache or python in order to see the results in both cases.
+
+## Conclusions:
+
+After measuring every page and saw some of the sources on this course for web optimizations and browser rendering optimizations. I realize it is important not to make too many calculations and avoid queries to DOM.
+In some cases I have to avoid layout trashing, excesive layouts, and calculations during animations.
+
